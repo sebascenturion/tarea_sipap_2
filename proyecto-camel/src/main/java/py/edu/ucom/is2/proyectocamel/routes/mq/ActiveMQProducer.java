@@ -8,15 +8,16 @@ import org.springframework.stereotype.Component;
 
 import py.edu.ucom.is2.proyectocamel.helper.MessageGenerator;
 
-//@Component
+@Component
 public class ActiveMQProducer extends RouteBuilder{
 
 	@Autowired
 	MessageGenerator gen;
 	@Override
 	public void configure() throws Exception {
-		from("timer:active-mq-timer?period=1000") //endpoint de entrada
-		.process(gen) //agregamos procesador
+		from("timer:active-mq-timer?period=2000") //endpoint de entrada
+		.process(gen) //agregamos procesador p
+		.log("Mensaje enviado> ${body}")
 		.to("activemq:is2"); //endpoint de salida
 		
 	}

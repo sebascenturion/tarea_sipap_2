@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import py.edu.ucom.is2.proyectocamel.helper.MessageGenerator;
 
-@Component
+//@Component
 public class ActiveMQTopicProducer extends RouteBuilder{
 
 	@Autowired
