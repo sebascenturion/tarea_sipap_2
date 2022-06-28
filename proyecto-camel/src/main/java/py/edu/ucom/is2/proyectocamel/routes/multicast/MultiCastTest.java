@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import py.edu.ucom.is2.proyectocamel.helper.Bean1;
 import py.edu.ucom.is2.proyectocamel.helper.Bean2;
 
-//@Component
+@Component
 public class MultiCastTest extends RouteBuilder {
 
 	@Autowired
@@ -23,14 +23,21 @@ public class MultiCastTest extends RouteBuilder {
 		// timer (componente endpoint)
 		// transformaciones
 		// logger
-		from("timer:mytimer?period=5000")
-		.log("${body}")
+		from("timer:mytimer?period=2000")
+		.transform().simple("Mensaje original")
 		.multicast().parallelProcessing()
-			.to("bean:bean1")
-	        .to("bean:bean2")
+			.pipeline()
+				.to("bean:bean1")
+				.to("log:logbean1")
+			.end()
+			.pipeline()
+				.to("bean:bean2")
+				.to("log:logbean2")
+			.end()
 			.to("log:mylogger")
-		.end()
-		.to("mock:result");
+			.to("activemq:is2")
+			.to("file:")
+		.end();
 	}
 }
 

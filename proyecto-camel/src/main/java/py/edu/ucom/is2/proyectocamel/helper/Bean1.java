@@ -13,7 +13,7 @@ public class Bean1 implements Processor {
 	public void process(Exchange exchange) throws Exception {
 		logger.info("estamos en bean1");
 		String body  = exchange.getIn().getBody(String.class);
-		exchange.getIn().setBody("mensaje modificado1");
+		exchange.getIn().setBody(body+"1");
 	}
 
 }

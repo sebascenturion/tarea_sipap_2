@@ -9,6 +9,6 @@ public class MessageGenerator implements Processor{
 	@Override
 	public void process(Exchange exchange) throws Exception {
 	    String body = exchange.getIn().getBody(String.class);
-	    exchange.getIn().setBody("Mensaje nuevo> "+exchange.getIn().getMessageId());
+	    exchange.getIn().setBody("Origen profesor> "+exchange.getIn().getMessageId());
 	}
 }
