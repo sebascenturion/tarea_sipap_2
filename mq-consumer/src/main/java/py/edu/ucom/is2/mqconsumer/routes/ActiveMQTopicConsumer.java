@@ -9,7 +9,7 @@ public class ActiveMQTopicConsumer extends RouteBuilder{
 	@Override
 	public void configure() throws Exception {
 		from("activemq:topic:whatsappMQ")
-		.transform().simple("Soy segundo consumidor> ${body}")
+		.transform().simple("consumidor ID 2> ${body}")
 		.to("log:is2log");
 		
 	}
