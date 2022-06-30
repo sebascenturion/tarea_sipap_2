@@ -13,3 +13,7 @@ proyecto-camel.zip
 *.tar.gz
 *.rar
 target/
+ProcesarTransferencia.java
+JsonRestTransferencia.java
+TranferRequestType.java
+TranferResponseType.java
