@@ -16,6 +16,7 @@ public class FilterRouter extends RouteBuilder {
 		.log("${body}")
 		.filter().method(Filtro5.class, "divisible")
 			.to("log:logger5")
+			.stop()
 		.end()
 		.to("log:loggerotros");
 		
