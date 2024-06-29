@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import py.edu.ucom.is2.proyectocamel.helper.MessageGenerator;
 
-//@Component
+@Component
 public class ActiveMQProducer extends RouteBuilder{
 
 	@Autowired
@@ -17,7 +17,7 @@ public class ActiveMQProducer extends RouteBuilder{
 		from("timer:active-mq-timer?period=2000") //generamos un mensaje nulo cada 2 segundos
 		.process(gen) //modificamos el mensaje con el ID generado
 		.log("Mensaje enviado> ${body}") //logueamos el body del mensaje
-		.to("activemq:is2"); //encolamos el mensaje a la cola del Apache ActiqveMQ IS2
+		.to("activemq:laboratorio"); //encolamos el mensaje a la cola del Apache ActiqveMQ IS2
 		
 	}
 
