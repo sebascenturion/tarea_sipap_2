@@ -16,7 +16,7 @@ public class transferenciasConsumer extends RouteBuilder {
         from("timer:transferenciaTimer?period=1000")
             .process(exchange -> {
                 String cuenta = String.valueOf((int)(Math.random() * 4000) + 1000);
-                double monto = (int)(Math.random() * 40000000) + 1000; // Ajustado para que genere montos mayores tambi√©n
+                double monto = (int)(Math.random() * 40000000) + 1000; // Ajustado para que genere montos mayores tambiÈn
                 String bancoOrigen = BANCOS[(int)(Math.random() * BANCOS.length)];
                 String bancoDestino = BANCOS[(int)(Math.random() * BANCOS.length)];
                 String fecha = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
@@ -38,12 +38,12 @@ public class transferenciasConsumer extends RouteBuilder {
                     .process(exchange -> {
                         String body = exchange.getIn().getBody(String.class);
                         String idTransaccion = body.substring(body.indexOf("\"id_transaccion\":") + 17, body.indexOf("\"", body.indexOf("\"id_transaccion\":") + 17));
-                        String rechazo = String.format("{\"id_transaccion\": \"%s\", \"mensaje\": \"El monto supera el m√°ximo permitido\"}", idTransaccion);
+                        String rechazo = String.format("{\"id_transaccion\": \"%s\", \"mensaje\": \"El monto supera el m·ximo permitido\"}", idTransaccion);
                         exchange.getIn().setBody(rechazo);
                     })
-                    .log("Transacci√≥n rechazada: ${body}")
+                    .log("TransacciÛn rechazada: ${body}")
                 .otherwise()
-                    .log("Transacci√≥n encolada: ${body}")
+                    .log("TransacciÛn encolada: ${body}")
                     .to("activemq:queue:centurion-ITAU-IN")
             .end();
     }
